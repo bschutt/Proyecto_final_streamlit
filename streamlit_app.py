@@ -13,7 +13,7 @@ with coln:
     st.header("📊 Looker Dashboards")
 with colm:
     # You can replace the image URL with the Looker logo or any other image you prefer
-    st.image('Dark Blue Simple Dark Tech and Gaming Bio-Link Website.png', width=150)
+    st.image('https://www.canva.com/design/DAF1Bz0MA6A/h-w-AQFct8WEPEeWncyz0Q/view?utm_content=DAF1Bz0MA6A&utm_campaign=designshare&utm_medium=link&utm_source=editor', width=150)
 st.markdown('---')
 
 # Replace this with your Looker dashboard URL
@@ -33,4 +33,3 @@ with colb:
 
 with cola:
     st.button(label='Open in Looker', on_click=toLooker)
-
