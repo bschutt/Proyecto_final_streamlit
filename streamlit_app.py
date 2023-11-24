@@ -17,7 +17,7 @@ with colm:
 st.markdown('---')
 
 # Replace this with your Looker dashboard URL
-looker_url = 'https://lookerstudio.google.com/s/uwgvVUM6nrM'
+looker_url = 'https://lookerstudio.google.com/reporting/2c58e29c-4ccc-43aa-a8ed-d55c4a12a9a1'
 
 def toLooker():
     webbrowser.open_new_tab(looker_url)
