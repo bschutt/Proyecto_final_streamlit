@@ -13,7 +13,7 @@ with coln:
     st.header("📊 Looker Dashboards")
 with colm:
     # Puedes reemplazar la URL de la imagen con el logo de Looker o cualquier otra imagen que prefieras
-    st.image('https://www.canva.com/design/DAF1Bz0MA6A/h-w-AQFct8WEPEeWncyz0Q/view?utm_content=DAF1Bz0MA6A&utm_campaign=designshare&utm_medium=link&utm_source=editor', width=150)
+    st.image('Dark Blue Simple Dark Tech and Gaming Bio-Link Website.png', width=150)
 st.markdown('---')
 
 # Reemplaza esto con tu URL de Looker
