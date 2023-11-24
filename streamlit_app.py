@@ -12,12 +12,12 @@ coln, colm = st.columns([4, 1])
 with coln:
     st.header("📊 Looker Dashboards")
 with colm:
-    # Puedes reemplazar la URL de la imagen con el logo de Looker o cualquier otra imagen que prefieras
+    # You can replace the image URL with the Looker logo or any other image you prefer
     st.image('Dark Blue Simple Dark Tech and Gaming Bio-Link Website.png', width=150)
 st.markdown('---')
 
-# Reemplaza esto con tu URL de Looker
-looker_url = 'https://lookerstudio.google.com/reporting/2c58e29c-4ccc-43aa-a8ed-d55c4a12a9a1'
+# Replace this with your Looker dashboard URL
+looker_url = 'https://lookerstudio.google.com/s/uwgvVUM6nrM'
 
 def toLooker():
     webbrowser.open_new_tab(looker_url)
@@ -28,8 +28,9 @@ with container1:
     cola, colb, colc = st.columns([2, 4, 2])
 
 with colb:
-    # Agrega el atributo sandbox al iframe
-    components.iframe(looker_url, width=768, height=603, scrolling=True, sandbox="allow-same-origin allow-scripts allow-popups")
+    # Embed Looker dashboard using iframe
+    components.iframe(looker_url, width=768, height=603, scrolling=True)
 
 with cola:
-    st.button(label='Abrir en Looker', on_click=toLooker)
+    st.button(label='Open in Looker', on_click=toLooker)
+
