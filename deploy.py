@@ -23,7 +23,7 @@ if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
     # Función para mostrar gráfica con título en negrita y centrado
     def mostrar_grafica(titulo, url):
         st.write(f"**{titulo}**")
-        st.markdown(f'<div style="text-align: center;"><iframe width="900" height="750" src="https://lookerstudio.google.com/embed/reporting/2c58e29c-4ccc-43aa-a8ed-d55c4a12a9a1/page/p_k6vdcpc1bd" frameborder="0" style="border:0" allowfullscreen></iframe></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="text-align: center;"><iframe width="900" height="750" src="{url}" frameborder="0" style="border:0" allowfullscreen></iframe></div>', unsafe_allow_html=True)
 
     # Página principal
     st.markdown("<h2>Dashboards KPI'S-Looker Studio</h2>", unsafe_allow_html=True)  # Título más pequeño
@@ -33,31 +33,34 @@ if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
 elif tema_seleccionado == "Modelo de Machine Learning":
     st.write("Modelo de Machine Learning")
     # Agrega aquí el contenido para el Tema 2
+
 elif tema_seleccionado == "Preguntas":
     st.write("## Preguntas sobre Esperanza de Vida")
 
     # Pregunta 1
     st.write("1. ¿Qué país tiene la esperanza de vida más alta para el 2040?")
-   # Configura tu credencial de Google Cloud
-client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
+    # Configura tu credencial de Google Cloud
+    client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
-query_1 = """
-    SELECT Pais, Esperanza_vida_total
-    FROM `pf-henry-404414.Notebooks.Query_1`
-    ORDER BY Esperanza_vida_total DESC
-    LIMIT 1
-"""
-result_1 = client.query(query_1).result()
+    query_1 = """
+        SELECT Pais, Esperanza_vida_total
+        FROM `pf-henry-404414.Notebooks.Query_1`
+        ORDER BY Esperanza_vida_total DESC
+        LIMIT 1
+    """
+    result_1 = client.query(query_1).result()
 
-# Mostrar los resultados en Streamlit
-st.write("## Pregunta 1: ¿Qué país tiene la esperanza de vida más alta para el 2040?")
+    # Mostrar los resultados en Streamlit
+    st.write("## Pregunta 1: ¿Qué país tiene la esperanza de vida más alta para el 2040?")
 
-for row in result_1:
-    st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
+    for row in result_1:
+        st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
 
     # Pregunta 2
     st.write("2. ¿Qué países tienen la esperanza de vida más baja en 2040?")
+    # Agrega aquí las consultas y visualizaciones para las otras preguntas
 
+# El resto del código permanece sin cambios
     # Pregunta 3
     st.write("3. ¿Cuáles son los cinco países con la mayor esperanza de vida en 2040?")
 
@@ -96,6 +99,7 @@ for row in result_1:
 
     # Pregunta 15
     st.write("15. ¿Cómo influye el índice GINI en la esperanza de vida?")
+
 elif tema_seleccionado == "Acerca de Nosotros":
 
     st.write("## Acerca de Nosotros")
