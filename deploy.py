@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Lista de temas
-temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Acerca de Nosotros"]
+temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas","Acerca de Nosotros"]
 
 # Barra lateral con botones para cada tema
 tema_seleccionado = st.sidebar.radio("Selecciona un tema", temas)
