@@ -24,6 +24,7 @@ st.title("Presentación Proyecto Final Henry")
 # Mostrar contenido según el tema seleccionado
 if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
     # ... (código existente)
+    pass
 
 elif tema_seleccionado == "Modelo de Machine Learning":
     st.write("Modelo de Machine Learning")
