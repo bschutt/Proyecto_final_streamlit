@@ -8,25 +8,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 import os
 
+
 st.set_option('deprecation.showfileUploaderEncoding', False)
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PARA DEPLOY/pf-henry-404414-784e39ca59ab.json"
-
-# Configura tu credencial de Google Cloud
-client = bigquery.Client.from_service_account_json(
-    "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
-)
-
-# Inicializar cliente BigQuery
-client = bigquery.Client()
-
-# Cargar datos desde BigQuery
-query = """
-SELECT *
-FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-WHERE year = 2040
-"""
-data_original = client.query(query).to_dataframe()
-data = data_original.copy()
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
 
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
@@ -34,7 +18,18 @@ temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Pregun
 # Barra lateral con botones para cada tema
 tema_seleccionado = st.sidebar.radio("Selecciona un tema", temas)
 
-if tema_seleccionado == "Preguntas":
+# Página principal
+st.title("Presentación Proyecto Final Henry")
+
+# Mostrar contenido según el tema seleccionado
+if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
+    # ... (código existente)
+  pass
+elif tema_seleccionado == "Modelo de Machine Learning":
+    st.write("Modelo de Machine Learning")
+    # Agrega aquí el contenido para el Tema 2
+
+elif tema_seleccionado == "Preguntas":
     st.write("## Preguntas sobre Esperanza de Vida")
 
     # Lista de preguntas
@@ -53,48 +48,65 @@ if tema_seleccionado == "Preguntas":
         "¿Cómo afecta el PIB per cápita a la prevalencia de desnutrición en la población?",
         "¿Existe una relación entre las emisiones de CO2 y la tasa de mortalidad por enfermedades cardiovasculares, cáncer y diabetes?",
         "¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?",
-        "¿Cómo afecta la población urbana al acceso al agua potable?"
+        "¿Cómo afecta a la población urbana al acceso al agua potable?"
     ]
-
-    # Lista desplegable para seleccionar la pregunta
+# Lista desplegable para seleccionar la pregunta
     pregunta_seleccionada = st.selectbox("Selecciona una pregunta", preguntas)
 
+    if pregunta_seleccionada:
+        st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
+
+
+    # Configura tu credencial de Google Cloud
+    client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
+
     # Mapa de consultas por pregunta
+   
+
     consultas = {
-        "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
-SELECT country, esperanza_vida_total
-FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-WHERE year = 2040
-ORDER BY esperanza_vida_total DESC
-LIMIT 1
-""",
-    }
+    "¿Qué país tiene la esperanza de vida más alta para el 2040?": 
+        """
+        SELECT Pais, Esperanza_vida_total
+        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
+        WHERE Ano = 2040
+        ORDER BY Esperanza_vida_total DESC
+        LIMIT 1
+        """
+    ,
 
-    # Ejecutar consulta según la pregunta seleccionada
-    if pregunta_seleccionada in consultas:
-        result = client.query(consultas[pregunta_seleccionada]).result()
+    "¿¿Qué países tienen la esperanza de vida más baja en 2040?": 
+        """
+        SELECT Pais, Esperanza_vida_total
+        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
+        WHERE Ano = 2040
+        ORDER BY Esperanza_vida_total DESC
+        LIMIT 5
+        """
+    ,
 
-        # Mostrar los resultados en Streamlit
-        st.write(f"## {pregunta_seleccionada}")
+    # Agrega consultas para otras preguntas aquí
+}
+elif tema_seleccionado == "Acerca de Nosotros":
+    
+    st.write("## Acerca de Nosotros")
+    
+    # Agrega el contenido para el Tema 3
+    st.write("Somos una consultora de datos llamada LatAm-Data Consulting encargada de realizar proyectos de data science sobre cualquier ámbito o sector que las empresas públicas o privadas deseen desarrollar con el fin de brindar herramientas para que tomen las mejores decisiones empresariales o corporativas basadas en datos (data-driven), estas decisiones contribuirán aumentar la eficiencia en todos los procesos con los que cuente la empresa (predicciones y pronóstico, medición de rendimientos, identificar oportunidades de negocio, análisis de competencia, reducción de riesgos, experiencia al cliente e innovación).")
+    
+    st.write("Para el presente proyecto, el propósito es trabajar en colaboración con entidades gubernamentales para mejorar la calidad de vida de las personas, aumentar los niveles de esperanza de vida y fomentar la salud y el bienestar a nivel global. Esto se realizará mediante un proyecto de data science completo en donde se involucren procesos de data engineering, data analytics y machine learning; basados principalmente en un dataset del Banco Mundial y otras fuentes de interés que proporcionen datos de calidad con el fin de realizar un ciclo de vida de dato completo y llegar a la resolución de los objetivos planteados.")
+    
+    st.write("## Equipo de Trabajo")
+    st.write("Contamos con un excelente equipo de profesionales con amplios conocimientos en el campo de análisis de datos.")
+    
+    # Agrega la información del equipo
+    st.write("* Brenda Schutt, (Data Analytics, Data Scientist)")
+    st.write("* Mara Laudonia (Data Analytics, Data Scientist)")
+    st.write("* Haider Infante Rey, (Data Engineer, Data Scientist)")
+    
+    # Agrega la imagen del equipo
+    st.image("imagenes/01team.png", caption="Equipo de Trabajo")
 
-    for row in result:
-        st.write(f"Respuesta: {row['country']} tiene la esperanza de vida de {row['esperanza_vida_total']} años")
+else:
+    st.write("Selecciona un tema para ver contenido específico.")
 
-
-
-
-
-
-def obtener_paises_con_menor_esperanza_vida(pregunta_seleccionada):
-    # Lógica para obtener los países con la esperanza de vida más baja en 2040
-    return []
-
-# Ejecutar consulta según la pregunta seleccionada
-if pregunta_seleccionada in consultas:
-    result = client.query(consultas[pregunta_seleccionada]).result()
-
-    # Mostrar los resultados en Streamlit
-    st.write(f"## {pregunta_seleccionada}")
-
-    for row in result:
-        st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
+# Fin del código
