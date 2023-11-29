@@ -9,8 +9,15 @@ from sklearn.model_selection import train_test_split
 import os
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PARA DEPLOY/pf-henry-404414-784e39ca59ab.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
 
+# Inicializar cliente BigQuery
+client = bigquery.Client()
+
+# Cargar datos desde BigQuery
+query = "SELECT * FROM `pf-henry-404414.Notebooks.Preguntas_ML`"
+data_original = client.query(query).to_dataframe()
+data = data_original.copy()
 
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
@@ -24,8 +31,7 @@ st.title("Presentación Proyecto Final Henry")
 # Mostrar contenido según el tema seleccionado
 if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
     # ... (código existente)
-    pass
-
+  pass
 elif tema_seleccionado == "Modelo de Machine Learning":
     st.write("Modelo de Machine Learning")
     # Agrega aquí el contenido para el Tema 2
@@ -49,7 +55,7 @@ elif tema_seleccionado == "Preguntas":
         "¿Cómo afecta el PIB per cápita a la prevalencia de desnutrición en la población?",
         "¿Existe una relación entre las emisiones de CO2 y la tasa de mortalidad por enfermedades cardiovasculares, cáncer y diabetes?",
         "¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?",
-        "¿Cómo afecta la población urbana al acceso al agua potable?"
+        "¿Cómo afecta a la población urbana al acceso al agua potable?"
     ]
 
     # Lista desplegable para seleccionar la pregunta
@@ -60,12 +66,13 @@ elif tema_seleccionado == "Preguntas":
 
     # Mapa de consultas por pregunta
     consultas = {
-        "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
-            SELECT Pais, Esperanza_vida_total
-            FROM `pf-henry-404414.Notebooks.Query_1`
-            ORDER BY Esperanza_vida_total DESC
-            LIMIT 1
-        """,
+        "¿Qué país tiene la esperanza de vida más alta para el 2040?": 
+
+    def obtener_paises_con_menor_esperanza_vida(pregunta_seleccionada):
+        # Lógica para obtener los países con la esperanza de vida más baja en 2040
+    return []
+
+
         # Agrega consultas para otras preguntas aquí
     }
 

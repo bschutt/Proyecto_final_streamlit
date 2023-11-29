@@ -13,7 +13,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PARA DEPLOY/pf-henry-404414-784e
 
 # Configura tu credencial de Google Cloud
 client = bigquery.Client.from_service_account_json(
-    "PARA DEPLOY/pf-henry-404414-784e39ca59ab.json"
+    "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
 )
 
 # Inicializar cliente BigQuery
