@@ -57,7 +57,10 @@ elif tema_seleccionado == "Preguntas":
         st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
 
         # Configura tu credencial de Google Cloud
-        client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
+        from google.cloud import bigquery
+
+client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
+
 
         # Mapa de scripts por pregunta
 scripts = {
