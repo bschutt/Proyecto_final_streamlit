@@ -6,37 +6,24 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
+import warnings
 import os
 
+warnings.filterwarnings('ignore')
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "pf-henry-404414-784e39ca59ab.json"
 
-# Lista de temas
-temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
+tema_seleccionado = st.sidebar.selectbox("Selecciona un tema", ["Preguntas"])  # Agregué un sidebar para seleccionar el tema
 
-# Barra lateral con botones para cada tema
-tema_seleccionado = st.sidebar.radio("Selecciona un tema", temas)
-
-# Página principal
-st.title("Presentación Proyecto Final Henry")
-
-# Mostrar contenido según el tema seleccionado
-if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
-    # ... (código existente)
-  pass
-elif tema_seleccionado == "Modelo de Machine Learning":
-    st.write("Modelo de Machine Learning")
-    # Agrega aquí el contenido para el Tema 2
-
-elif tema_seleccionado == "Preguntas":
+if tema_seleccionado == "Preguntas":
     st.write("## Preguntas sobre Esperanza de Vida")
 
     # Lista de preguntas
     preguntas = [
         "¿Qué país tiene la esperanza de vida más alta para el 2040?",
         "¿Qué países tienen la esperanza de vida más baja en 2040?",
-        "¿Cuáles son los cinco países con la mayor esperanza de vida en 2040?",
+        "Cuáles son los cinco países con la mayor esperanza de vida en 2040?",
         "¿Cuál es la relación entre las emisiones de CO2 y la esperanza de vida?",
         "¿Cómo afecta el nivel de educación obligatoria en años a la esperanza de vida?",
         "¿Cómo ha cambiado la esperanza de vida global en las últimas dos décadas?",
@@ -50,54 +37,31 @@ elif tema_seleccionado == "Preguntas":
         "¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?",
         "¿Cómo afecta a la población urbana al acceso al agua potable?"
     ]
-# Lista desplegable para seleccionar la pregunta
+    
+    # Lista desplegable para seleccionar la pregunta
     pregunta_seleccionada = st.selectbox("Selecciona una pregunta", preguntas)
 
     if pregunta_seleccionada:
         st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
           
         # Mapa de scripts por pregunta
-scripts = {
-   "¿Qué país tiene la esperanza de vida más alta para el 2040?": "Deploy_streamlit/scripts/pregunta_1.py",
-
-    # Agrega scripts para otras preguntas aquí
+        scripts = {
+            "¿Qué país tiene la esperanza de vida más alta para el 2040?": "Deploy_streamlit/scripts/pregunta_1.py",
+            # Agrega scripts para otras preguntas aquí
         }
 
         # Agregar un botón para ejecutar el script
-if st.button("Consultar"):
-    # Cargar el script correspondiente a la pregunta seleccionada
-    script_path = scripts.get(pregunta_seleccionada, "")
-    if script_path:
-        # Ejecutar el script
-        try:
-            with open(script_path, "r") as script_file:
-                script_code = script_file.read()
-                exec(script_code)
-        except Exception as e:
-            st.write(f"Error al ejecutar el script: {e}")
-    else:
-        st.write("Script no encontrado.")
-
-elif tema_seleccionado == "Acerca de Nosotros":      
-    st.write("## Acerca de Nosotros")
-    
-    # Agrega el contenido para el Tema 3
-    st.write("Somos una consultora de datos llamada LatAm-Data Consulting encargada de realizar proyectos de data science sobre cualquier ámbito o sector que las empresas públicas o privadas deseen desarrollar con el fin de brindar herramientas para que tomen las mejores decisiones empresariales o corporativas basadas en datos (data-driven), estas decisiones contribuirán aumentar la eficiencia en todos los procesos con los que cuente la empresa (predicciones y pronóstico, medición de rendimientos, identificar oportunidades de negocio, análisis de competencia, reducción de riesgos, experiencia al cliente e innovación).")
-    
-    st.write("Para el presente proyecto, el propósito es trabajar en colaboración con entidades gubernamentales para mejorar la calidad de vida de las personas, aumentar los niveles de esperanza de vida y fomentar la salud y el bienestar a nivel global. Esto se realizará mediante un proyecto de data science completo en donde se involucren procesos de data engineering, data analytics y machine learning; basados principalmente en un dataset del Banco Mundial y otras fuentes de interés que proporcionen datos de calidad con el fin de realizar un ciclo de vida de dato completo y llegar a la resolución de los objetivos planteados.")
-    
-    st.write("## Equipo de Trabajo")
-    st.write("Contamos con un excelente equipo de profesionales con amplios conocimientos en el campo de análisis de datos.")
-    
-    # Agrega la información del equipo
-    st.write("* Brenda Schutt, (Data Analytics, Data Scientist)")
-    st.write("* Mara Laudonia (Data Analytics, Data Scientist)")
-    st.write("* Haider Infante Rey, (Data Engineer, Data Scientist)")
-    
-    # Agrega la imagen del equipo
-    st.image("imagenes/01team.png", caption="Equipo de Trabajo")
-
-else:
-    st.write("Selecciona un tema para ver contenido específico.")
-
-# Fin del código
+        if st.button("Consultar"):
+            # Cargar el script correspondiente a la pregunta seleccionada
+            script_path = scripts.get(pregunta_seleccionada, "")
+            if script_path:
+                # Ejecutar el script
+                try:
+                    with open(script_path, "r") as script_file:
+                        script_code = script_file.read()
+                        exec(script_code)
+                except Exception as e:
+                    st.write(f"Error al ejecutar el script: {e}")
+            else:
+                st.write("Script no encontrado.")
+                
