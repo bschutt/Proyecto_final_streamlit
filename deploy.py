@@ -59,49 +59,27 @@ elif tema_seleccionado == "Preguntas":
         # Configura tu credencial de Google Cloud
         client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
-        # Mapa de consultas por pregunta
-        consultas = {
-            "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
-                SELECT
-                 pais,
-                 esperanza_vida_total,
-                row_number() OVER (ORDER BY esperanza_vida_total DESC) AS ranking
-                FROM
-                 (
-                SELECT
-                pais,
-                esperanza_vida_total,
-                year_of_interest
-                FROM
-                 `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-                WHERE
-                 year_of_interest = 2040
-                ) AS predictions
-                WHERE
-                 ranking = 1
-                """,
-            "¿Qué países tienen la esperanza de vida más baja en 2040?": """
-                SELECT Pais, Esperanza_vida_total
-                FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-                WHERE Ano = 2040
-                ORDER BY Esperanza_vida_total ASC
-                LIMIT 5
-                """,
-            # Agrega consultas para otras preguntas aquí
+        # Mapa de scripts por pregunta
+scripts = {
+    "¿Qué país tiene la esperanza de vida más alta para el 2040?": "scripts/pregunta_1.py",
+    "¿Qué países tienen la esperanza de vida más baja en 2040?": "scripts/pregunta_2.py",
+    # Agrega scripts para otras preguntas aquí
         }
 
-        # Agregar un botón para ejecutar la consulta
-        if st.button("Consultar"):
-            # Ejecutar la consulta correspondiente a la pregunta seleccionada
-            consulta = consultas.get(pregunta_seleccionada, "")
-            if consulta:
-                df = client.query(consulta).to_dataframe()
-
-                # Muestra el resultado
-                st.write("### Resultado de la consulta:")
-                st.dataframe(df)
-            else:
-                st.write("Consulta no encontrada.")
+        # Agregar un botón para ejecutar el script
+if st.button("Consultar"):
+    # Cargar el script correspondiente a la pregunta seleccionada
+    script_path = scripts.get(pregunta_seleccionada, "")
+    if script_path:
+        # Ejecutar el script
+        try:
+            with open(script_path, "r") as script_file:
+                script_code = script_file.read()
+                exec(script_code)
+        except Exception as e:
+            st.write(f"Error al ejecutar el script: {e}")
+    else:
+        st.write("Script no encontrado.")
 
 elif tema_seleccionado == "Acerca de Nosotros":      
     st.write("## Acerca de Nosotros")
