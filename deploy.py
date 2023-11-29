@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 import os
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "modelos_machine_learning/pf-henry-404414-784e39ca59ab.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PARA DEPLOY/pf-henry-404414-784e39ca59ab.json"
 
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
