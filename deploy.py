@@ -11,6 +11,7 @@ import os
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
+client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
@@ -55,13 +56,7 @@ elif tema_seleccionado == "Preguntas":
 
     if pregunta_seleccionada:
         st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
-
-        # Configura tu credencial de Google Cloud
-        from google.cloud import bigquery
-
-client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
-
-
+          
         # Mapa de scripts por pregunta
 scripts = {
    "¿Qué país tiene la esperanza de vida más alta para el 2040?": "scripts/pregunta_1.py",
