@@ -56,38 +56,42 @@ elif tema_seleccionado == "Preguntas":
     if pregunta_seleccionada:
         st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
 
+        # Configura tu credencial de Google Cloud
+        client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
-    # Configura tu credencial de Google Cloud
-    client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
+        # Mapa de consultas por pregunta
+        consultas = {
+            "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
+                SELECT Pais, Esperanza_vida_total
+                FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
+                WHERE Ano = 2040
+                ORDER BY Esperanza_vida_total DESC
+                LIMIT 1
+                """,
+            "¿¿Qué países tienen la esperanza de vida más baja en 2040?": """
+                SELECT Pais, Esperanza_vida_total
+                FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
+                WHERE Ano = 2040
+                ORDER BY Esperanza_vida_total ASC
+                LIMIT 5
+                """,
+            # Agrega consultas para otras preguntas aquí
+        }
 
-    # Mapa de consultas por pregunta
-   
+        # Agregar un botón para ejecutar la consulta
+        if st.button("Consultar"):
+            # Ejecutar la consulta correspondiente a la pregunta seleccionada
+            consulta = consultas.get(pregunta_seleccionada, "")
+            if consulta:
+                df = client.query(consulta).to_dataframe()
 
-    consultas = {
-    "¿Qué país tiene la esperanza de vida más alta para el 2040?": 
-        """
-        SELECT Pais, Esperanza_vida_total
-        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-        WHERE Ano = 2040
-        ORDER BY Esperanza_vida_total DESC
-        LIMIT 1
-        """
-    ,
+                # Muestra el resultado
+                st.write("### Resultado de la consulta:")
+                st.dataframe(df)
+            else:
+                st.write("Consulta no encontrada.")
 
-    "¿¿Qué países tienen la esperanza de vida más baja en 2040?": 
-        """
-        SELECT Pais, Esperanza_vida_total
-        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-        WHERE Ano = 2040
-        ORDER BY Esperanza_vida_total DESC
-        LIMIT 5
-        """
-    ,
-
-    # Agrega consultas para otras preguntas aquí
-}
-elif tema_seleccionado == "Acerca de Nosotros":
-    
+elif tema_seleccionado == "Acerca de Nosotros":      
     st.write("## Acerca de Nosotros")
     
     # Agrega el contenido para el Tema 3
@@ -110,6 +114,3 @@ else:
     st.write("Selecciona un tema para ver contenido específico.")
 
 # Fin del código
-
-
-   
