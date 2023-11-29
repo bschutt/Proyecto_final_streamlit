@@ -62,7 +62,7 @@ elif tema_seleccionado == "Preguntas":
         # Mapa de scripts por pregunta
 scripts = {
     "¿Qué país tiene la esperanza de vida más alta para el 2040?": "scripts/pregunta_1.py",
-    "¿Qué países tienen la esperanza de vida más baja en 2040?": "scripts/pregunta_2.py",
+    
     # Agrega scripts para otras preguntas aquí
         }
 
