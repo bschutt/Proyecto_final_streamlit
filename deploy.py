@@ -49,33 +49,11 @@ elif tema_seleccionado == "Preguntas":
         "¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?",
         "¿Cómo afecta a la población urbana al acceso al agua potable?"
     ]
-
-    # Lista desplegable para seleccionar la pregunta
-    pregunta_seleccionada = ""  # Establecer un valor predeterminado
-
-# Mostrar contenido según el tema seleccionado
-if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
-    # ... (código existente)
-    pass
-elif tema_seleccionado == "Modelo de Machine Learning":
-    st.write("Modelo de Machine Learning")
-    # Agrega aquí el contenido para el Tema 2
-
-elif tema_seleccionado == "Preguntas":
-    st.write("## Preguntas sobre Esperanza de Vida")
-
-    # Lista de preguntas
-    preguntas = [
-        "¿Qué país tiene la esperanza de vida más alta para el 2040?",
-        # ... (otras preguntas)
-    ]
-
-    # Lista desplegable para seleccionar la pregunta
+# Lista desplegable para seleccionar la pregunta
     pregunta_seleccionada = st.selectbox("Selecciona una pregunta", preguntas)
 
-    # Resto del código para las preguntas...
-
-# Resto del código...
+    if pregunta_seleccionada:
+        st.write(f"Has seleccionado la pregunta: {pregunta_seleccionada}")
 
 
     # Configura tu credencial de Google Cloud
