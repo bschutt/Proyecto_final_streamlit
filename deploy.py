@@ -71,8 +71,8 @@ client = bigquery.Client()
 # Consultar el archivo
 query = """
 SELECT *
-FROM `my-dataset.my-table`
-WHERE name = 'pregunta_1.py'
+FROM `pf-henry-404414.Noteboks.`
+WHERE name = 'scripts/pregunta_1.py'
 """
 
 # Ejecutar la consulta
@@ -84,7 +84,7 @@ job = client.query(query, job_config=job_config)
 job.result()
 
 # Abrir el archivo
-with open("/tmp/pregunta_1.py", "r") as script_file:
+with open("/tmp/scripts/pregunta_1.py", "r") as script_file:
     script_code = script_file.read()
     exec(script_code)
 
