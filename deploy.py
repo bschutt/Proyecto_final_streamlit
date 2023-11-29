@@ -62,11 +62,23 @@ elif tema_seleccionado == "Preguntas":
         # Mapa de consultas por pregunta
         consultas = {
             "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
-                SELECT Pais, Esperanza_vida_total
-                FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
-                WHERE Ano = 2040
-                ORDER BY Esperanza_vida_total DESC
-                LIMIT 1
+                SELECT
+                 pais,
+                 esperanza_vida_total,
+                row_number() OVER (ORDER BY esperanza_vida_total DESC) AS ranking
+                FROM
+                 (
+                SELECT
+                pais,
+                esperanza_vida_total,
+                year_of_interest
+                FROM
+                 `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
+                WHERE
+                 year_of_interest = 2040
+                ) AS predictions
+                WHERE
+                 ranking = 1
                 """,
             "¿Qué países tienen la esperanza de vida más baja en 2040?": """
                 SELECT Pais, Esperanza_vida_total
