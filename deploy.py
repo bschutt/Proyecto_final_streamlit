@@ -61,7 +61,7 @@ elif tema_seleccionado == "Preguntas":
 
         # Mapa de scripts por pregunta
 scripts = {
-    "¿Qué país tiene la esperanza de vida más alta para el 2040?": scripts/pregunta_1.py"
+    "¿Qué país tiene la esperanza de vida más alta para el 2040?": scripts/pregunta_1.py?"
     # Importar la API de BigQuery
 from google.cloud import bigquery
 
