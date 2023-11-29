@@ -11,14 +11,6 @@ import os
 st.set_option('deprecation.showfileUploaderEncoding', False)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
 
-# Inicializar cliente BigQuery
-client = bigquery.Client()
-
-# Cargar datos desde BigQuery
-query = "SELECT * FROM `pf-henry-404414.Notebooks.Preguntas_ML`"
-data_original = client.query(query).to_dataframe()
-data = data_original.copy()
-
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
 
