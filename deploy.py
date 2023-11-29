@@ -6,11 +6,13 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
+import os
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "modelos_machine_learning/pf-henry-404414-784e39ca59ab.json"
 
 # Lista de temas
-temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas","Acerca de Nosotros"]
+temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
 
 # Barra lateral con botones para cada tema
 tema_seleccionado = st.sidebar.radio("Selecciona un tema", temas)
@@ -65,40 +67,40 @@ elif tema_seleccionado == "Preguntas":
     st.write("3. ¿Cuáles son los cinco países con la mayor esperanza de vida en 2040?")
 
     # Pregunta 4
-    st.write("4. ¿Cuál es la esperanza de vida promedio para las mujeres en 2040?")
+    st.write("4. ¿Cuál es la relación entre las emisiones de CO2 y la esperanza de vida?")
 
     # Pregunta 5
-    st.write("5. ¿Cuál es la esperanza de vida promedio para los hombres en 2040?")
+    st.write("5. ¿Cómo afecta el nivel de educación obligatoria en años a la esperanza de vida?")
 
     # Pregunta 6
-    st.write("6. ¿Cuál es la esperanza de vida promedio para las mujeres en Argentina en 2040?")
+    st.write("6. ¿Cómo ha cambiado la esperanza de vida global en las últimas dos décadas?")
 
     # Pregunta 7
-    st.write("7. ¿Cuál es la esperanza de vida promedio para los varones en Costa Rica en 2040?")
+    st.write("7. ¿Cómo afecta el gasto gubernamental en salud al aumento de la esperanza de vida?")
 
     # Pregunta 8
-    st.write("8. ¿Cuáles son los indicadores que más influyen en la predicción de la esperanza de vida?")
+    st.write("8. ¿Existe una correlación entre la estabilidad política y la esperanza de vida?")
 
     # Pregunta 9
-    st.write("9. ¿Cuál es la relación entre las emisiones de CO2 y la esperanza de vida?")
+    st.write("9. ¿Cuál es la relación entre el acceso al agua potable  y la esperanza de vida?")
 
     # Pregunta 10
-    st.write("10. ¿Cómo afecta el nivel de educación obligatoria en años a la esperanza de vida?")
+    st.write("10. ¿Cómo influye el índice GINI en la esperanza de vida?")
 
     # Pregunta 11
-    st.write("11. ¿Cómo ha cambiado la esperanza de vida global en las últimas dos década?")
+    st.write("11. ¿Cómo afecta el nivel de educación obligatoria en años a la tasa de mortalidad en un país?")
 
     # Pregunta 12
-    st.write("12. ¿Cómo afecta el gasto gubernamental en salud al aumento de la esperanza de vida?")
+    st.write("12. ¿Cómo afecta el PIB per cápita a la prevalencia de desnutrición en la población?")
 
     # Pregunta 13
-    st.write("13. ¿Existe una correlación entre la estabilidad política y la esperanza de vida?")
+    st.write("13. ¿Existe una relación entre las emisiones de CO2 y la tasa de mortalidad por enfermedades cardiovasculares, cáncer y diabetes?")
 
     # Pregunta 14
-    st.write("14. ¿Cuál es la relación entre el acceso al agua potable  y la esperanza de vida?")
+    st.write("14. ¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?")
 
     # Pregunta 15
-    st.write("15. ¿Cómo influye el índice GINI en la esperanza de vida?")
+    st.write("15. ¿Cómo afecta la población urbana al acceso al agua potable?")
 
 elif tema_seleccionado == "Acerca de Nosotros":
 
