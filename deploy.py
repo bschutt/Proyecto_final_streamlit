@@ -61,11 +61,9 @@ scripts = {
    "¿Qué país tiene la esperanza de vida más alta para el 2040?": "scripts/pregunta_1.py",
      
 # Consultar el archivo
-query = """
-SELECT *
-FROM `pf-henry-404414.Noteboks.`
+query = SELECT * FROM `pf-henry-404414.Noteboks.`
 WHERE name = 'scripts/pregunta_1.py'
-"""
+
 
 # Ejecutar la consulta
 job_config = bigquery.QueryJobConfig()
