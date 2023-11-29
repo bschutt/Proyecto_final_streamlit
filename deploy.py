@@ -85,18 +85,30 @@ elif tema_seleccionado == "Preguntas":
 
     # Agrega consultas para otras preguntas aquí
 }
+elif tema_seleccionado == "Acerca de Nosotros":
+    
+    st.write("## Acerca de Nosotros")
+    
+    # Agrega el contenido para el Tema 3
+    st.write("Somos una consultora de datos llamada LatAm-Data Consulting encargada de realizar proyectos de data science sobre cualquier ámbito o sector que las empresas públicas o privadas deseen desarrollar con el fin de brindar herramientas para que tomen las mejores decisiones empresariales o corporativas basadas en datos (data-driven), estas decisiones contribuirán aumentar la eficiencia en todos los procesos con los que cuente la empresa (predicciones y pronóstico, medición de rendimientos, identificar oportunidades de negocio, análisis de competencia, reducción de riesgos, experiencia al cliente e innovación).")
+    
+    st.write("Para el presente proyecto, el propósito es trabajar en colaboración con entidades gubernamentales para mejorar la calidad de vida de las personas, aumentar los niveles de esperanza de vida y fomentar la salud y el bienestar a nivel global. Esto se realizará mediante un proyecto de data science completo en donde se involucren procesos de data engineering, data analytics y machine learning; basados principalmente en un dataset del Banco Mundial y otras fuentes de interés que proporcionen datos de calidad con el fin de realizar un ciclo de vida de dato completo y llegar a la resolución de los objetivos planteados.")
+    
+    st.write("## Equipo de Trabajo")
+    st.write("Contamos con un excelente equipo de profesionales con amplios conocimientos en el campo de análisis de datos.")
+    
+    # Agrega la información del equipo
+    st.write("* Brenda Schutt, (Data Analytics, Data Scientist)")
+    st.write("* Mara Laudonia (Data Analytics, Data Scientist)")
+    st.write("* Haider Infante Rey, (Data Engineer, Data Scientist)")
+    
+    # Agrega la imagen del equipo
+    st.image("imagenes/01team.png", caption="Equipo de Trabajo")
 
-def obtener_paises_con_menor_esperanza_vida(pregunta_seleccionada):
-    # Lógica para obtener los países con la esperanza de vida más baja en 2040
-    return []
+else:
+    st.write("Selecciona un tema para ver contenido específico.")
 
-# Ejecutar consulta según la pregunta seleccionada
-if pregunta_seleccionada in consultas:
-    result = client.query(consultas[pregunta_seleccionada]).result()
+# Fin del código
 
-    # Mostrar los resultados en Streamlit
-    st.write(f"## {pregunta_seleccionada}")
 
-    for row in result:
-        st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
    

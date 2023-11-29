@@ -80,3 +80,21 @@ LIMIT 1
     for row in result:
         st.write(f"Respuesta: {row['country']} tiene la esperanza de vida de {row['esperanza_vida_total']} años")
 
+
+
+
+
+
+def obtener_paises_con_menor_esperanza_vida(pregunta_seleccionada):
+    # Lógica para obtener los países con la esperanza de vida más baja en 2040
+    return []
+
+# Ejecutar consulta según la pregunta seleccionada
+if pregunta_seleccionada in consultas:
+    result = client.query(consultas[pregunta_seleccionada]).result()
+
+    # Mostrar los resultados en Streamlit
+    st.write(f"## {pregunta_seleccionada}")
+
+    for row in result:
+        st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
