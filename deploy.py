@@ -11,7 +11,6 @@ import os
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Deploy_streamlit/pf-henry-404414-784e39ca59ab.json"
-client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
