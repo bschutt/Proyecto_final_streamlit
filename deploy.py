@@ -11,6 +11,7 @@ import os
 st.set_option('deprecation.showfileUploaderEncoding', False)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PARA DEPLOY/pf-henry-404414-784e39ca59ab.json"
 
+
 # Lista de temas
 temas = ["Dashboards KPI'S-Looker Studio", "Modelo de Machine Learning", "Preguntas", "Acerca de Nosotros"]
 
@@ -22,15 +23,7 @@ st.title("Presentación Proyecto Final Henry")
 
 # Mostrar contenido según el tema seleccionado
 if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
-    # Función para mostrar gráfica con título en negrita y centrado
-    def mostrar_grafica(titulo, url):
-        st.write(f"**{titulo}**")
-        st.markdown(f'<div style="text-align: center;"><iframe width="900" height="750" src="{url}" frameborder="0" style="border:0" allowfullscreen></iframe></div>', unsafe_allow_html=True)
-
-    # Página principal
-    st.markdown("<h2>Dashboards KPI'S-Looker Studio</h2>", unsafe_allow_html=True)  # Título más pequeño
-    # Mostrar las gráficas con títulos en negrita y centrados
-    mostrar_grafica("", "https://lookerstudio.google.com/embed/reporting/2c58e29c-4ccc-43aa-a8ed-d55c4a12a9a1/page/p_zalhmmsqbd")
+    # ... (código existente)
 
 elif tema_seleccionado == "Modelo de Machine Learning":
     st.write("Modelo de Machine Learning")
@@ -39,71 +32,53 @@ elif tema_seleccionado == "Modelo de Machine Learning":
 elif tema_seleccionado == "Preguntas":
     st.write("## Preguntas sobre Esperanza de Vida")
 
-    # Pregunta 1
-    st.write("1. ¿Qué país tiene la esperanza de vida más alta para el 2040?")
+    # Lista de preguntas
+    preguntas = [
+        "¿Qué país tiene la esperanza de vida más alta para el 2040?",
+        "¿Qué países tienen la esperanza de vida más baja en 2040?",
+        "¿Cuáles son los cinco países con la mayor esperanza de vida en 2040?",
+        "¿Cuál es la relación entre las emisiones de CO2 y la esperanza de vida?",
+        "¿Cómo afecta el nivel de educación obligatoria en años a la esperanza de vida?",
+        "¿Cómo ha cambiado la esperanza de vida global en las últimas dos décadas?",
+        "¿Cómo afecta el gasto gubernamental en salud al aumento de la esperanza de vida?",
+        "¿Existe una correlación entre la estabilidad política y la esperanza de vida?",
+        "¿Cuál es la relación entre el acceso al agua potable y la esperanza de vida?",
+        "¿Cómo influye el índice GINI en la esperanza de vida?",
+        "¿Cómo afecta el nivel de educación obligatoria en años a la tasa de mortalidad en un país?",
+        "¿Cómo afecta el PIB per cápita a la prevalencia de desnutrición en la población?",
+        "¿Existe una relación entre las emisiones de CO2 y la tasa de mortalidad por enfermedades cardiovasculares, cáncer y diabetes?",
+        "¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?",
+        "¿Cómo afecta la población urbana al acceso al agua potable?"
+    ]
+
+    # Lista desplegable para seleccionar la pregunta
+    pregunta_seleccionada = st.selectbox("Selecciona una pregunta", preguntas)
+
     # Configura tu credencial de Google Cloud
     client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
-    query_1 = """
-        SELECT Pais, Esperanza_vida_total
-        FROM `pf-henry-404414.Notebooks.Query_1`
-        ORDER BY Esperanza_vida_total DESC
-        LIMIT 1
-    """
-    result_1 = client.query(query_1).result()
+    # Mapa de consultas por pregunta
+    consultas = {
+        "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
+            SELECT Pais, Esperanza_vida_total
+            FROM `pf-henry-404414.Notebooks.Query_1`
+            ORDER BY Esperanza_vida_total DESC
+            LIMIT 1
+        """,
+        # Agrega consultas para otras preguntas aquí
+    }
 
-    # Mostrar los resultados en Streamlit
-    st.write("## Pregunta 1: ¿Qué país tiene la esperanza de vida más alta para el 2040?")
+    # Ejecutar consulta según la pregunta seleccionada
+    if pregunta_seleccionada in consultas:
+        result = client.query(consultas[pregunta_seleccionada]).result()
 
-    for row in result_1:
-        st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
+        # Mostrar los resultados en Streamlit
+        st.write(f"## {pregunta_seleccionada}")
 
-    # Pregunta 2
-    st.write("2. ¿Qué países tienen la esperanza de vida más baja en 2040?")
-    # Agrega aquí las consultas y visualizaciones para las otras preguntas
-
-# El resto del código permanece sin cambios
-    # Pregunta 3
-    st.write("3. ¿Cuáles son los cinco países con la mayor esperanza de vida en 2040?")
-
-    # Pregunta 4
-    st.write("4. ¿Cuál es la relación entre las emisiones de CO2 y la esperanza de vida?")
-
-    # Pregunta 5
-    st.write("5. ¿Cómo afecta el nivel de educación obligatoria en años a la esperanza de vida?")
-
-    # Pregunta 6
-    st.write("6. ¿Cómo ha cambiado la esperanza de vida global en las últimas dos décadas?")
-
-    # Pregunta 7
-    st.write("7. ¿Cómo afecta el gasto gubernamental en salud al aumento de la esperanza de vida?")
-
-    # Pregunta 8
-    st.write("8. ¿Existe una correlación entre la estabilidad política y la esperanza de vida?")
-
-    # Pregunta 9
-    st.write("9. ¿Cuál es la relación entre el acceso al agua potable  y la esperanza de vida?")
-
-    # Pregunta 10
-    st.write("10. ¿Cómo influye el índice GINI en la esperanza de vida?")
-
-    # Pregunta 11
-    st.write("11. ¿Cómo afecta el nivel de educación obligatoria en años a la tasa de mortalidad en un país?")
-
-    # Pregunta 12
-    st.write("12. ¿Cómo afecta el PIB per cápita a la prevalencia de desnutrición en la población?")
-
-    # Pregunta 13
-    st.write("13. ¿Existe una relación entre las emisiones de CO2 y la tasa de mortalidad por enfermedades cardiovasculares, cáncer y diabetes?")
-
-    # Pregunta 14
-    st.write("14. ¿Hay diferencias significativas en la tasa de mortalidad entre la población rural y urbana?")
-
-    # Pregunta 15
-    st.write("15. ¿Cómo afecta la población urbana al acceso al agua potable?")
+        for row in result:
+            st.write(f"Respuesta: {row['Pais']} tiene la esperanza de vida más alta para el 2040 con {row['Esperanza_vida_total']} años.")
 
 elif tema_seleccionado == "Acerca de Nosotros":
-
     st.write("## Acerca de Nosotros")
     
     # Agrega el contenido para el Tema 3
