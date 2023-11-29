@@ -65,8 +65,7 @@ scripts = {
     # Importar la API de BigQuery
    
 # Crear un cliente de BigQuery
-    client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
-
+client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
 
 # Consultar el archivo
 query = """
