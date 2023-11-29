@@ -68,7 +68,7 @@ elif tema_seleccionado == "Preguntas":
                 ORDER BY Esperanza_vida_total DESC
                 LIMIT 1
                 """,
-            "¿¿Qué países tienen la esperanza de vida más baja en 2040?": """
+            "¿Qué países tienen la esperanza de vida más baja en 2040?": """
                 SELECT Pais, Esperanza_vida_total
                 FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
                 WHERE Ano = 2040
