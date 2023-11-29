@@ -59,24 +59,6 @@ elif tema_seleccionado == "Preguntas":
         # Mapa de scripts por pregunta
 scripts = {
    "¿Qué país tiene la esperanza de vida más alta para el 2040?": "scripts/pregunta_1.py",
-     
-# Consultar el archivo
-query = SELECT * FROM `pf-henry-404414.Noteboks.`
-WHERE name = 'scripts/pregunta_1.py'
-
-
-# Ejecutar la consulta
-job_config = bigquery.QueryJobConfig()
-job_config.destination = "/tmp/pregunta_1.py"
-job_config.write_disposition = bigquery.WriteDisposition().WRITE_TRUNCATE
-
-job = client.query(query, job_config=job_config)
-job.result()
-
-# Abrir el archivo
-with open("/tmp/scripts/pregunta_1.py", "r") as script_file:
-    script_code = script_file.read()
-    exec(script_code)
 
     # Agrega scripts para otras preguntas aquí
         }
