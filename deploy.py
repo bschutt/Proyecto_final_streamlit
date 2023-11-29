@@ -51,7 +51,32 @@ elif tema_seleccionado == "Preguntas":
     ]
 
     # Lista desplegable para seleccionar la pregunta
+    pregunta_seleccionada = ""  # Establecer un valor predeterminado
+
+# Mostrar contenido según el tema seleccionado
+if tema_seleccionado == "Dashboards KPI'S-Looker Studio":
+    # ... (código existente)
+    pass
+elif tema_seleccionado == "Modelo de Machine Learning":
+    st.write("Modelo de Machine Learning")
+    # Agrega aquí el contenido para el Tema 2
+
+elif tema_seleccionado == "Preguntas":
+    st.write("## Preguntas sobre Esperanza de Vida")
+
+    # Lista de preguntas
+    preguntas = [
+        "¿Qué país tiene la esperanza de vida más alta para el 2040?",
+        # ... (otras preguntas)
+    ]
+
+    # Lista desplegable para seleccionar la pregunta
     pregunta_seleccionada = st.selectbox("Selecciona una pregunta", preguntas)
+
+    # Resto del código para las preguntas...
+
+# Resto del código...
+
 
     # Configura tu credencial de Google Cloud
     client = bigquery.Client.from_service_account_json('pf-henry-404414-784e39ca59ab.json')
