@@ -66,7 +66,7 @@ elif tema_seleccionado == "Preguntas":
     "¿Qué país tiene la esperanza de vida más alta para el 2040?": 
         """
         SELECT Pais, Esperanza_vida_total
-        FROM `pf-henry-404414.Notebooks.Preguntas_ML`
+        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
         WHERE Ano = 2040
         ORDER BY Esperanza_vida_total DESC
         LIMIT 1
@@ -76,7 +76,7 @@ elif tema_seleccionado == "Preguntas":
     "¿¿Qué países tienen la esperanza de vida más baja en 2040?": 
         """
         SELECT Pais, Esperanza_vida_total
-        FROM `pf-henry-404414.Notebooks.Preguntas_ML`
+        FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
         WHERE Ano = 2040
         ORDER BY Esperanza_vida_total DESC
         LIMIT 5
