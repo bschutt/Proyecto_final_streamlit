@@ -61,13 +61,13 @@ if tema_seleccionado == "Preguntas":
 
     # Mapa de consultas por pregunta
     consultas = {
-        "¿Qué país tiene la esperanza de vida más alta para el 2040?": 
+        "¿Qué país tiene la esperanza de vida más alta para el 2040?": """
 SELECT country, esperanza_vida_total
 FROM `pf-henry-404414.data_machine_learning.wb_data_machine_learning_bis`
 WHERE year = 2040
 ORDER BY esperanza_vida_total DESC
 LIMIT 1
-,
+""",
     }
 
     # Ejecutar consulta según la pregunta seleccionada
